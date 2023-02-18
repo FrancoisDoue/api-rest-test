@@ -1,3 +1,14 @@
 #index:
 #    path: /
 #    controller: App\Controller\DefaultController::index
+
+controllers:
+  resource: ../src/controller/
+  type: annotation
+
+kernel:
+  resource: ../src/kernel.php
+  type: annotation
+
+api_login_check:
+  path: /api/login_check
