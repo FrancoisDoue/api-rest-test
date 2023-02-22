@@ -38,6 +38,15 @@ class AuthorRepository extends ServiceEntityRepository
             $this->getEntityManager()->flush();
         }
     }
+    public function findAllWithPagination(int $page, int $limit)
+    {
+        $qb = $this->createQueryBuilder('b')->setFirstResult(($page - 1) * $limit)->setMaxResults($limit);
+        return $qb->getQuery()->getResult();
+        // $query = $qb->getQuery();
+        // // changer le fetchMode de LAZY a EAGER est moins efficace: le cache ne renverra pas les livres des auteurs
+        // $query->setFetchMode(Author::class, "book", \Doctrine\ORM\Mapping\ClassMetadata::FETCH_EAGER);
+        // return $query->getResult();
+    }
 
 //    /**
 //     * @return Author[] Returns an array of Author objects
